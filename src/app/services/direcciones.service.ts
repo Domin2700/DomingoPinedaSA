@@ -20,8 +20,11 @@ export class DireccionesService {
   }
 
   updateDireccion(direccion: Direccion): Observable<Direccion> {
-    let idDireccion: number = direccion.idDireccion;
-    return this.http.patch<Direccion>(`${this.url}/direcciones/updatedireccion/${idDireccion}`,direccion);
+    return this.http.put<Direccion>(`${this.url}/direcciones/updatedireccion/${direccion.idDireccion}`,direccion);
+  }
+
+  deleteDireccion(idDireccion: number): Observable<any> {
+    return this.http.delete<any>(`${this.url}/direcciones/deletedireccion/${idDireccion}`);
   }
 
   getDirecciones(): Observable<Direccion[]> {
@@ -37,8 +40,11 @@ export class DireccionesService {
   }
 
   updateCliente(cliente: Cliente): Observable<Cliente> {
-    let idCliente: number = cliente.idCliente;
-    return this.http.patch<Direccion>(`${this.url}/direcciones/updatecliente/${idCliente}`,cliente);
+    return this.http.put<Direccion>(`${this.url}/direcciones/updatecliente/${cliente.idCliente}`,cliente);
+  }
+
+  deleteCliente(idCliente: number): Observable<any> {
+    return this.http.delete<any>(`${this.url}/direcciones/deletecliente/${idCliente}`);
   }
 
   getClientes(): Observable<Cliente[]> {

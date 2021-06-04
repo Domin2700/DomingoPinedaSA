@@ -3,4 +3,5 @@ export interface Cliente {
     nombres?: string;
     apellidos?: string;
     cedula?: string;
+    enable: boolean;
 }

@@ -58,7 +58,7 @@
 
     </div>
 
-    <button type="button" class="btn btn-primary" [ngClass]="{'btn-primary':!f.idDireccion.value,'btn-danger':f.idDireccion.value}">
+    <button type="reset" class="btn btn-primary" [ngClass]="{'btn-primary':!f.idDireccion.value,'btn-danger':f.idDireccion.value}">
         <span *ngIf="!f.idDireccion.value">
          <i class="fas fa-eraser fa-lg "></i> Limpiar 
         </span>
@@ -94,18 +94,34 @@
                 <th>MUNICIPIO</th>
                 <th>SECTOR</th>
                 <th>CALLE</th>
+                <th></th>
+                <th></th>
 
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
+            <tr *ngFor="let direcciones of direcciones">
+                <td>{{direcciones.cliente}}</td>
+                <td>{{direcciones.provincia}}</td>
+                <td>{{direcciones.municipio}}</td>
+                <td>{{direcciones.sector}}</td>
+                <td>{{direcciones.calle}}</td>
 
+                <td>
+                    <span title="Editar" (click)="cargarDatos(direcciones)" class="puntero">
+                     <i class="fas fa-edit text-primary"></i>
+                 </span>
                 </td>
+                <td>
+                    <span title="Borrar" (click)="deleteDireccion(direcciones.idDireccion!)" class="puntero">
+                     <i class="fas fa-trash-alt"></i>
+               </span>
+                </td>
+
             </tr>
         </tbody>
     </table>
 </div>
 
 
-<app-modal-clientes></app-modal-clientes>
+<app-modal-clientes [clientes]="clientes"></app-modal-clientes>

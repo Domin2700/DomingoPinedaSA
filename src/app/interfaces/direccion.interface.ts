@@ -7,4 +7,5 @@ export interface Direccion {
     cliente?:string;
     idProvincia?:number;
     idCliente?:number;
+    enable: boolean;
 }

@@ -18,6 +18,10 @@ button[type=submit] {
     padding-right: 1px;
 }
 
+.puntero {
+    cursor: pointer;
+}
+
 
 /*--------- -------------------------------------------------------- */
 
