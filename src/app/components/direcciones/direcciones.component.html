@@ -13,6 +13,7 @@
             <label for="idCliente">Cliente</label>
             <select class="form-control" id="idCliente" formControlName="idCliente" [ngClass]="{'is-invalid':submitted && f.idCliente.errors}">
               <option [ngValue]="null">Seleccione un cliente</option>
+              <option *ngFor="let clientes of clientes" [ngValue] ="clientes.idCliente"  >{{clientes.nombres}}</option>
            </select>
             <div *ngIf="submitted && f.idCliente.errors" class="invalid-feedback animated fadeIn">
                 <div *ngIf="f.idCliente.errors.required">Requerido</div>
@@ -23,6 +24,7 @@
             <label for="idProvincia">Provincia</label>
             <select class="form-control" id="idProvincia" formControlName="idProvincia" [ngClass]="{'is-invalid':submitted && f.idProvincia.errors}">
               <option [ngValue]="null">Seleccione una provincia</option>
+              <option *ngFor="let provincias of provincias" [ngValue] ="provincias.idProvincia"  >{{provincias.nombre}}</option>
             </select>
             <div *ngIf="submitted && f.idProvincia.errors" class="invalid-feedback animated fadeIn">
                 <div *ngIf="f.idProvincia.errors.required">Requerido</div>
@@ -90,6 +92,7 @@
         <thead>
             <tr>
                 <th>CLIENTE</th>
+                <th>CEDULA</th>
                 <th>PROVINCIA</th>
                 <th>MUNICIPIO</th>
                 <th>SECTOR</th>
@@ -102,6 +105,7 @@
         <tbody>
             <tr *ngFor="let direcciones of direcciones">
                 <td>{{direcciones.cliente}}</td>
+                <td>{{direcciones.cedula}}</td>
                 <td>{{direcciones.provincia}}</td>
                 <td>{{direcciones.municipio}}</td>
                 <td>{{direcciones.sector}}</td>
@@ -113,7 +117,7 @@
                  </span>
                 </td>
                 <td>
-                    <span title="Borrar" (click)="deleteDireccion(direcciones.idDireccion!)" class="puntero">
+                    <span title="Borrar" (click)="deleteDireccion(direcciones.idDireccion!)" class="puntero text-danger">
                      <i class="fas fa-trash-alt"></i>
                </span>
                 </td>
@@ -124,4 +128,4 @@
 </div>
 
 
-<app-modal-clientes [clientes]="clientes"></app-modal-clientes>
+<app-modal-clientes [clientes]="clientes" (ejecutar)="getClientes()"></app-modal-clientes>

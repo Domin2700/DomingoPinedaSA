@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/interfaces/clientes.interface';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ import { DireccionesService } from '../../services/direcciones.service';
   styleUrls: ['./modal-clientes.component.css']
 })
 export class ModalClientesComponent implements OnInit {
- @ViewChild(DireccionesComponent) componentDirecciones!: DireccionesComponent;
+  @Output() ejecutar = new EventEmitter();
  @Input() clientes: Cliente[]=[];
 
  formClientes!: FormGroup;
@@ -22,7 +22,7 @@ export class ModalClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.formClientes = this.formBuilder.group({
-      idCliente:[0],
+      idCliente:[null],
       nombres:[null,[Validators.required,Validators.maxLength(50)]],
       apellidos:[null,[Validators.required,Validators.maxLength(50)]],
       cedula:[null,[Validators.required,Validators.minLength(11),Validators.maxLength(11),Validators.pattern('[0-9]*')]],
@@ -49,6 +49,7 @@ export class ModalClientesComponent implements OnInit {
 
 
     insertCliente(): void {
+      // console.log(this.formClientes.value);
       Swal.fire({
         allowOutsideClick: false,
         icon: 'info',
@@ -63,8 +64,8 @@ export class ModalClientesComponent implements OnInit {
           timer: 1500
         });
         this.submitted = false;
-        this.formClientes.reset;
-        this.componentDirecciones.getClientes();
+        this.ngOnInit;
+        this.ejecutar.emit();
       });
     }
   
@@ -83,8 +84,8 @@ export class ModalClientesComponent implements OnInit {
           timer: 1500
         });
         this.submitted = false;
-        this.formClientes.reset;
-        this.componentDirecciones.getClientes();
+        this.ngOnInit;
+        this.ejecutar.emit();
       });
     }
   
@@ -107,8 +108,8 @@ export class ModalClientesComponent implements OnInit {
           .subscribe(
             (resp) => {
               Swal.fire('Listo!', 'Cliente eliminado');
-              this.componentDirecciones.getClientes();
-             
+              this.ejecutar.emit();
+              this.ngOnInit;
             }
           );
         }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DomingoPinedaAPI.Context
-{ }
+{ 
     public class ApplicationDbContext : DbContext
     {
 
@@ -15,10 +15,14 @@ namespace DomingoPinedaAPI.Context
       {
 
       }
-
-      //Modulo Usuario
       public DbSet<Cliente> Cliente { get; set; }
       public DbSet<Provincia> Provincia { get; set; }
       public DbSet<Direccion> Direccion { get; set; }
+
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+      base.OnModelCreating(builder);
     }
+  }
 }

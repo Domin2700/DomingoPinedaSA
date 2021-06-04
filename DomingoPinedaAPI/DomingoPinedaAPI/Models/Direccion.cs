@@ -9,10 +9,12 @@ namespace DomingoPinedaAPI.Models
   public class Direccion
   {
     [Key]
-    public int IdDireccion { get; set; }
+    public int? IdDireccion { get; set; }
     [Required,MaxLength(50)]
     public string Calle { get; set; }
     [Required, MaxLength(50)]
+    public string Sector { get; set; }
+
     public string Municipio { get; set; }
     [Required]
     public int IdProvincia { get; set; }

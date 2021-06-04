@@ -1,8 +1,9 @@
+using DomingoPinedaAPI.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Cors.Internal;
+using Microsoft.AspNetCore.Mvc.Cors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,29 +25,33 @@ namespace DomingoPinedaAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+    // This method gets called by the runtime. Use this method to add services to the container.
+    [Obsolete]
+    public void ConfigureServices(IServiceCollection services)
         {
       // Este metodo me permite acceder al api desde el cliente
       services.AddCors(o => o.AddPolicy("MyCorsPolicy", builder =>
       {
         builder
-        
+
               .WithOrigins("http://localhost:4200")
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
       }));
 
+
+
+      services.AddMvc();
+
       //Le asigno la cadena de conexion a mi contexto de datos usando inyeccion de dependencias 
       services.AddDbContext<ApplicationDbContext>(options =>
       options.UseSqlServer(Configuration.GetConnectionString("ConnetionString")));
 
-      //services.Configure<MvcOptions>(options => {
-      //  options.Filters.Add(new CorsAuthorizationFilterFactory("MyCorsPolicy"));
-      //});
-      services.AddControllers();
-        }
+
+      //services.AddControllers();
+      services.AddControllers().AddNewtonsoftJson();
+    }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -59,7 +64,7 @@ namespace DomingoPinedaAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("MyCorsPolicy"); 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

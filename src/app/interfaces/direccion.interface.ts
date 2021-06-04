@@ -5,6 +5,7 @@ export interface Direccion {
     municipio?: string;
     provincia?:string;
     cliente?:string;
+    cedula?:string;
     idProvincia?:number;
     idCliente?:number;
     enable: boolean;

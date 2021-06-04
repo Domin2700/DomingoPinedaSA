@@ -20,7 +20,9 @@ export class DireccionesService {
   }
 
   updateDireccion(direccion: Direccion): Observable<Direccion> {
-    return this.http.put<Direccion>(`${this.url}/direcciones/updatedireccion/${direccion.idDireccion}`,direccion);
+    console.log(direccion);
+    let idDireccion: number = direccion.idDireccion!;
+    return this.http.put<Direccion>(`${this.url}/direcciones/updatedireccion/${idDireccion}`,direccion);
   }
 
   deleteDireccion(idDireccion: number): Observable<any> {
@@ -36,11 +38,13 @@ export class DireccionesService {
   }
  
   insertCliente(cliente: Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(`${this.url}/direcciones/insertcliente`,cliente);
+    console.log(cliente);
+    return this.http.post<Cliente>(`${this.url}/direcciones/insertcliente`, cliente);
   }
 
   updateCliente(cliente: Cliente): Observable<Cliente> {
-    return this.http.put<Direccion>(`${this.url}/direcciones/updatecliente/${cliente.idCliente}`,cliente);
+    let idCliente: number = cliente.idCliente!;
+    return this.http.put<Cliente>(`${this.url}/direcciones/updatecliente/${idCliente}`,cliente);
   }
 
   deleteCliente(idCliente: number): Observable<any> {

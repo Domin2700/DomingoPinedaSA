@@ -9,8 +9,8 @@ namespace DomingoPinedaAPI.Models
   public class Cliente
   {
     [Key]
-    public int IdCliente { get; set; }
-    [Required,MaxLength(50)]
+    public int? IdCliente { get; set; }
+    [Required, MaxLength(50)]
     public string Nombres { get; set; }
     [Required, MaxLength(50)]
     public string Apellidos { get; set; }

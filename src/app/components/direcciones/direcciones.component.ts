@@ -26,7 +26,7 @@ export class DireccionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.formDirecciones = this.formBuilder.group({
-     idDireccion:[0],
+     idDireccion:[null],
      calle:[null,[Validators.required,Validators.maxLength(50)]],
      sector:[null,[Validators.required,Validators.maxLength(50)]],
      municipio:[null,Validators.maxLength(50)],
