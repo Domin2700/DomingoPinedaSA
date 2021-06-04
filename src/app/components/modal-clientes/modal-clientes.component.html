@@ -1,19 +1,96 @@
 <!-- Modal -->
 <div class="modal fade" id="modalClientes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalClientesLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalClientesLabel">
+                <h5 class="modal-title fw-lighter" id="modalClientesLabel">
                     Clientes
                 </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
             </div>
 
             <!-- Body -->
             <div class="modal-body">
+                <form class="form" [formGroup]="formClientes" (ngSubmit)="onSubmit()">
+                    <div class="row mb-2">
+
+                        <div class="form-group col-md-4">
+                            <label for="nombres">Nombres</label>
+                            <input type="text" class="form-control" id="nombres" formControlName="nombres" ngClass="{'is-valid': submitted && f.clientes.errors}">
+                        </div>
+
+                        <div *ngIf="submitted && f.nombres.errors" class="invalid-feedback animated fadeIn">
+                            <div *ngIf="f.nombres.errors.required">Requerido</div>
+                            <div *ngIf="f.nombres.errors.maxlength">Maximo 50 digitos</div>
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="apellidos">Apellidos</label>
+                            <input type="text" class="form-control" id="apellidos" formControlName="apellidos" [ngClass]="{ 'is-invalid': submitted && f.apellidos.errors }">
+
+                            <div *ngIf="submitted && f.apellidos.errors" class="invalid-feedback animated fadeIn">
+                                <div *ngIf="f.apellidos.errors.required">Requerido</div>
+                                <div *ngIf="f.apellidos.errors.maxlength">Maximo 50 digitos</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="cedula">Cédula</label>
+                            <input type="text" class="form-control" id="cedula" formControlName="cedula" [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }">
+
+                            <div *ngIf="submitted && f.cedula.errors" class="invalid-feedback animated fadeIn">
+                                <div *ngIf="f.cedula.errors.required">Requerido</div>
+                                <div *ngIf="f.cedula.errors.minlength">Minimo 11 digitos</div>
+                                <div *ngIf="f.cedula.errors.maxlength">Maximo 11 digitos</div>
+                                <div *ngIf="f.cedula.errors.pattern">Solo numeros</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" [ngClass]="{'btn-primary':!f.idCliente.value,'btn-danger':f.idCliente.value}">
+                        <span *ngIf="!f.idCliente.value">
+                         <i class="fas fa-eraser fa-lg "></i> Limpiar 
+                        </span>
+                
+                        <span *ngIf="f.idCliente.value">
+                         <i class="fas fa-times-circle fa-lg "></i> Cancelar 
+                        </span>
+                         
+                    </button>
+
+
+
+                    <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success':f.idCliente.value,'btn-primary':!f.idCliente.value}">
+                        <span *ngIf="!f.idCliente.value">
+                            <i class="fas fa-save fa-lg "></i> Guardar 
+                        </span>
+                
+                       <span *ngIf="f.idCliente.value">
+                        <i class="fas fa-sync-alt fa-lg"></i> Actualizar 
+                        </span>
+                                                                    
+                    </button>
+                </form>
+                <hr>
+                <table class="table table-responsive-lg table-hover">
+                    <thead>
+                        <tr>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
+                            <th>CEDULA</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
 
 

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClientes">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClientes">
         <i class="fas fa-user-plus"></i> Crear cliente
 </button>
 <h3 class="fw-lighter">Direccion</h3>
@@ -37,7 +37,7 @@
             <input type="text" class="form-control" id="calle" formControlName="calle" [ngClass]="{'is-invalid':submitted && f.calle.errors}">
             <div *ngIf="submitted && f.calle.errors" class="invalid-feedback animated fadeIn">
                 <div *ngIf="f.calle.errors.required">Requerido</div>
-                <div *ngIf="f.calle.errors.maxlength">Maximo 50 caracteres</div>
+                <div *ngIf="f.calle.errors.maxlength">Maximo 50 digitos</div>
             </div>
         </div>
 
@@ -46,7 +46,7 @@
             <input type="text" class="form-control" id="sector" formControlName="sector" [ngClass]="{'is-invalid':submitted && f.sector.errors}">
             <div *ngIf="submitted && f.sector.errors" class="invalid-feedback animated fadeIn">
                 <div *ngIf="f.sector.errors.required">Requerido</div>
-                <div *ngIf="f.sector.errors.maxlength">Maximo 50 caracteres</div>
+                <div *ngIf="f.sector.errors.maxlength">Maximo 50 digitos</div>
             </div>
         </div>
 
