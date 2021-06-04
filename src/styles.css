@@ -12,6 +12,12 @@ button[type=submit] {
     margin-right: 5px;
 }
 
+.my-custom-scrollbar {
+    position: relative;
+    overflow: auto;
+    padding-right: 1px;
+}
+
 
 /*--------- -------------------------------------------------------- */
 
